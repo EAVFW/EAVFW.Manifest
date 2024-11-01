@@ -8,6 +8,7 @@ import {
     IButtonStyles,
     IComboBox,
     IComboBoxOption,
+    Icon,
     IDropdownOption,
     IDropdownStyleProps,
     IDropdownStyles,
@@ -21,7 +22,7 @@ import {
     useTheme
 } from "@fluentui/react";
 
-import { Dialog,DialogSurface } from "@fluentui/react-components";
+import { Dialog,DialogSurface, Toolbar, ToolbarButton } from "@fluentui/react-components";
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
@@ -308,19 +309,13 @@ export const LookupCoreControl: React.FC<LookupCoreControlProps> = ({
             modalType="alert"   // to prevent closing dialog on focus change
         >
             <DialogSurface aria-orientation="vertical" style={{ minWidth: "60vw", maxWidth: "90vw" }}>
-                <CommandBar id="ModalRibbonBarCommands"
-                    items={[]}
-                    farItems={[{
-                        key: 'close',
-                        //  text: 'Info',
-                        // This needs an ariaLabel since it's icon-only
-                        ariaLabel: 'Info',
-                        iconOnly: true,
-                        iconProps: { iconName: 'Cancel' },
-                        onClick: _hideModal,
-                    }]}
-                    ariaLabel="Use left and right arrow keys to navigate between commands"
-                />
+            <Toolbar aria-label="Modal ribbon commands" style={{ justifyContent: "flex-end" }}>
+                <ToolbarButton 
+                    icon={<Icon iconName="Cancel" />}
+                        aria-label="Close"
+                        onClick={_hideModal}
+                    />
+                </Toolbar>
                 <FormRender entityName={targetEntityName}
                     forms={forms}
                     type={type}
