@@ -555,7 +555,7 @@ export function LookupControl<T>({
         }
         return filter; 
     }, [column?.filter ?? attributeType.filter, formvalues]);
-    const id = useMemo(() => a++, []);    //for tracking components in logging
+    
     if (isPolyLookup(attribute.type)) {
         const type = attribute.type;
         
