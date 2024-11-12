@@ -12,7 +12,7 @@ export async function handleValidationErrors(rsp: Response, app: ModelDrivenApp)
     let extraErrors = {} as FormValidation;
    
 
-    if (rsp.status === 409) {
+    if (rsp.status === 409 || rsp.status === 401) {
         let responseJson = (await rsp.json()).errors as ValidationError[];
         console.log(responseJson);
 
