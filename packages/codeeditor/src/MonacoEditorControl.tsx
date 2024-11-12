@@ -104,4 +104,3 @@ export const MonacoEditorControl: React.VFC<MonacoEditorControlProps> = ({ entit
 };
 export default MonacoEditorControl;
 
-RegistereControl("MonacoEditorControl", MonacoEditorControl);
