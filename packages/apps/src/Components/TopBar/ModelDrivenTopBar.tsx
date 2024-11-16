@@ -21,10 +21,11 @@ import useSWR from "swr";
 import { useId, useBoolean } from '@fluentui/react-hooks';
 import { useUserProfile } from "../Profile";
 import { ResolveFeature } from "../../FeatureFlags";
-import { FluentProvider, Theme as FluentUI9Theme, Link as FluentLink, makeStyles, Text, Persona, Dialog, DialogSurface, DialogBody, DialogTitle, DialogContent } from "@fluentui/react-components";
+import { FluentProvider, Theme as FluentUI9Theme, Link as FluentLink, makeStyles, Text, Persona, Dialog, DialogSurface, DialogBody, DialogTitle, DialogContent, mergeClasses } from "@fluentui/react-components";
 import { PortalCompatProvider } from "@fluentui/react-portal-compat";
 import { Hamburger } from "@fluentui/react-nav-preview";
 import { useEAVApp, useModelDrivenApp } from "../../useModelDrivenApp";
+import { useSectionStyles } from "../../Styles";
 
 
 
@@ -75,6 +76,7 @@ const useContentStyles = makeStyles({
         justifyContent: "space-between",
         alignItems: "center",
         gap: "10px",
+        marginBottom: "0px",
     },
     topBarLeft: {
         display: "flex",
@@ -112,15 +114,15 @@ export function TopBar({ title, search, showMenuOpener =true, theme }: TopBarPro
 
     const topBarV2Theme: FluentUI9Theme = ResolveFeature("topBarV2Theme", false) ?? ResolveFeature("defaultV2Theme", false);
     const defaultTheme: FluentUI9Theme = ResolveFeature("defaultV2Theme");
-
+    const section = useSectionStyles();
     const [isModalOpen, { setTrue: showModal, setFalse: hideModal, toggle }] = useBoolean(false);
     const titleId = useId('title');
     //   const user = useContext(UserContext);
     return (
-        <FluentProvider theme={topBarV2Theme}>
+        <FluentProvider theme={topBarV2Theme} className={mergeClasses(section.section, styles.topBar)}>
 
 
-            <div className={styles.topBar}>
+            
                 <div className={styles.topBarLeft}>
                     {showMenuOpener && profile && <Hamburger onClick={toggleNav} />}
                     {title && <Link href="/" legacyBehavior>
@@ -178,8 +180,7 @@ export function TopBar({ title, search, showMenuOpener =true, theme }: TopBarPro
                             </FluentProvider>
                         </>}
                 </div>
-            </div>
-
+             
 
         </FluentProvider >
     );
