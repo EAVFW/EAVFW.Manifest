@@ -69,7 +69,7 @@ const useStyles = makeStyles({
         display: "flex",
         height: "auto",
         padding: "0px",
-        marginBottom: "0px",
+        marginBottom: "0px",        
     },
     areapicker: {
         padding: "0px",
@@ -120,8 +120,8 @@ export default function ModelDrivenNavigation({ sitemap }: ModelDrivenNavigation
     return (
         <div className={styles.root}>
         
-       
-        <FluentProvider id="themeNavV2" theme={ResolveFeature("topBarV2Theme", false)} className={mergeClasses(sectionstyles.section, styles.root)}>
+
+            <FluentProvider id="themeNavV2" theme={ResolveFeature("topBarV2Theme", false)} className={mergeClasses(sectionstyles.section, sectionstyles.grow, styles.root)}>
             <PortalCompatProvider>
                 <NavDrawer 
                     defaultSelectedValue={`${router.query.entityName ?? router.query.dashboard}-${router.query.view}`}
