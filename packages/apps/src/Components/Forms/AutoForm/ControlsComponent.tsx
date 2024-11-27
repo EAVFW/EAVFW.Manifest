@@ -103,6 +103,7 @@ import { useEAVForm } from "@eavfw/forms";
 import ObjectFieldTemplate from "./Templates/ObjectFieldTemplate";
 import { useSectionStyles } from "../../../Styles";
 import { mergeClasses } from "@fluentui/react-components";
+import { Controls } from "../../Controls";
 
 export const WidgetRegister: FormProps["widgets"] = {
     SelectWidget: SelectWidget,
@@ -240,7 +241,7 @@ const ControlsComponent =
                         }}
                         idPrefix={app.currentEntityName}
                         formData={formData}
-                        fields={{ ControlHostWidget: ControlHostWidget }}
+                        fields={{ ControlHostWidget: ControlHostWidget, ...Controls }}
                         widgets={WidgetRegister} 
                         uiSchema={uiSChema}
                         templates={{

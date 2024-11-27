@@ -33,5 +33,6 @@ export type FormColumnDefinition = {
     }
     minLength?: number;
     displayName?: string;
-    schema?: JSONSchema7 & addPrefixToObject<any,'x-'>
+    schema?: JSONSchema7 & addPrefixToObject<any, 'x-'>;
+    uiSchema?: any;
 };
