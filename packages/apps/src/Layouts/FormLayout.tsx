@@ -18,6 +18,7 @@ import { RibbonBar } from "../Components/Ribbon/RibbonBar";
 import { WizardDrawer } from "../Components/Wizards/WizardDrawer";
 import { WizardProvider } from "../Components/Wizards/WizardProvider";
 import { useSectionStyles } from "../Styles/SectionStyles.styles";
+import { makeStyles, mergeClasses } from "@fluentui/react-components";
 
 
 
@@ -32,7 +33,11 @@ const FormLayoutContext = createContext({
 export const useFormLayoutContext = () => useContext(FormLayoutContext);
 
 
-
+const useLayoutStyles = makeStyles({
+    ribbon: {
+        width:"auto"
+    }
+})
 export function FormLayout(props: PageLayoutProps) {
     console.group("FormLayout");
     try {
@@ -41,7 +46,7 @@ export function FormLayout(props: PageLayoutProps) {
             return <div>loading</div>;
 
 
-
+       
 
         const app = useModelDrivenApp();
         const router = useRouter();
@@ -79,7 +84,7 @@ export function FormLayout(props: PageLayoutProps) {
         //  const [isOpen, setIsOpen] = useState(false);
 
         const styles = useSectionStyles();
-
+        const styles1 = useLayoutStyles();
         return (
             <ModelDrivenGridViewerSelectedContext.Provider value={{ setSelection, selection: selection!, selectionDetails }}>
                 <FormLayoutContext.Provider value={{ mutator: mutater, setMutator: setMutator }}>
@@ -99,7 +104,7 @@ export function FormLayout(props: PageLayoutProps) {
                                             <Stack.Item grow>
 
                                                 <Stack verticalFill>
-                                                    <RibbonBar className={styles.section} />
+                                                    <RibbonBar className={mergeClasses(styles.section, styles1.ribbon)} />
 
 
                                                     <MessageArea />
