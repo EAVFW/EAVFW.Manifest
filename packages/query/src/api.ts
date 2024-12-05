@@ -116,3 +116,28 @@ export const queryRecord = async<T>(url: string, query: ODataBuilder<T>, cache: 
     return b?.value as T;
 
 }
+
+export const fetch_eav = async<T>(url: string, query: ODataBuilder<T>, cache: RequestCache = "default") => {
+    const token = await getTokenAsync();
+
+    url = `${process.env['NEXT_BUILD_API_BASEURL']}${url}?${query.build()}`
+
+    console.log("Querying", url);
+
+    let a = await fetch(url,
+        {
+            cache: cache,
+            method: "GET",
+            headers: {
+                authorization: "Bearer " + token.access_token,
+            }
+        });
+    if (!a.ok) {
+        
+        throw new Error(`Failedt to query.[${a.status}]\n${await a.text()}`);
+    }
+
+    let b = await a.json();
+
+    return b?.items as Array<T>;
+}
