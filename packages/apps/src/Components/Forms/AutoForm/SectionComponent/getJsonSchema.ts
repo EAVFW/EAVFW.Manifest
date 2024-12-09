@@ -144,7 +144,7 @@ export function getJsonSchema(
                         resizable: false,
                         styles: {
                             ...(defaultProps["x-widget-props"]?.["styles"] ?? {}),
-                            field: { ...(defaultProps["x-widget-props"]?.["styles"]?.["field"] ?? {}), height: 200, }
+                            field: { ...(defaultProps["x-widget-props"]?.["styles"]?.["field"] ?? {}) }
                         },
                     },
                 };
