@@ -479,6 +479,10 @@ const getCellText = (item: any, column: IColumn): string => {
         return value.toString();
     }
 
+    if (typeof value === "object") {
+        return JSON.stringify(value);
+    }
+
     // Convert and format the value as a date and time string.
     return value;
 };
