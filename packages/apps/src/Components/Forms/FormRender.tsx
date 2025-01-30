@@ -34,7 +34,7 @@ export function FormRender<T>(props: FormRenderProps) {
     const saveBtnText = props.saveBtnText?? forms?.[formName]?.buttons?.save?.text      //gets text for naming of save btn in modal if it is defined
     const cancelBtnText = props.cancelBtnText ?? forms?.[formName]?.buttons?.cancel?.text  //gets text for naming of cancel btn in modal if it is defined
 
-    const record = useRef(props.record ?? {});
+    const record = useRef({ ... props.record ?? {} });
     //const [record, setRecord] = useState({ ...props.record ?? {} });
     const related = useMemo(() => app.getRelated(entity.logicalName), [entity.logicalName]);
     const [preSaveValidators, setPreSaveValidators] = useState<PreSaveValidator[]>([]);
@@ -102,7 +102,7 @@ export function FormRender<T>(props: FormRenderProps) {
         console.log("FormRender, Data changed Modal", data);
          record.current = data;
        // setRecord(data);
-        onChange(data);
+      //  onChange(data);
     }, []);
 
     //useEffect(() => {
